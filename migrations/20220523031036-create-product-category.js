@@ -12,19 +12,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "products",
-          key: "id",
+          key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        onDelete: "CASCADE"
       },
       idCategory: {
         type: Sequelize.INTEGER,
         references: {
           model: "categories",
-          key: "id",
+          key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
