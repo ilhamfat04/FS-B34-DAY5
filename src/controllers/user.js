@@ -1,6 +1,6 @@
 const { user } = require('../../models')
 
-exports.addUsers = async (req, res) => {
+exports.addUser = async (req, res) => {
     try {
 
         await user.create(req.body)
@@ -23,7 +23,7 @@ exports.getUsers = async (req, res) => {
 
         const users = await user.findAll({
             attributes: {
-                exclude: ['password','createdAt', 'updatedAt']
+                exclude: ['password', 'createdAt', 'updatedAt']
             }
         })
 
@@ -72,4 +72,26 @@ exports.getUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     // code here
+    try {
+        const id = req.params.id
+        const newData = req.body
+
+        await user.update(newData, {
+            where: {
+                id
+            }
+        })
+
+        res.send({
+            status: "success",
+            message: `Update successfull for user with id: ${id}`,
+            data: newData
+        })
+    } catch (error) {
+        console.log(error)
+        res.send({
+            status: 'failed',
+            message: 'Server Error'
+        })
+    }
 }
